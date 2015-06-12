@@ -69,8 +69,27 @@ public class MapActivity extends FragmentActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_about, menu);
+        getMenuInflater().inflate(R.menu.menu_map, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_database) {
+            Intent i = new Intent(this,DataBaseActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.action_volver) {
+            Intent i = new Intent(this,MainActivity.class);
+            startActivity(i);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
     public void CargarSedes (){
 
@@ -89,21 +108,6 @@ public class MapActivity extends FragmentActivity implements
         }else{
             Toast.makeText(getApplicationContext(), "No hay Sedes cargadas! ", Toast.LENGTH_SHORT).show();
         }
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_volver) {
-            Intent i = new Intent(this,MainActivity.class);
-            startActivity(i);
-        }*/
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -169,9 +173,9 @@ public class MapActivity extends FragmentActivity implements
         currentLocation = new LatLng(latitude,longitude);
         map.addMarker(new MarkerOptions()
                 .position(currentLocation)
-                .title("Im here")
-                .snippet("This is your current location")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                .title("You are here!")
+                .snippet("Actual")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
     }
     @Override
     public void onPause() {
@@ -187,5 +191,17 @@ public class MapActivity extends FragmentActivity implements
         if(!mGoogleApiClient.isConnected()) {
             mGoogleApiClient.connect();
         }
+    }
+    public void MY_LOCATION(View view){
+        if(newLocationReady){
+            map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLocation,20);
+            map.animateCamera(cameraUpdate);
+        }
+    }
+    public void LOCATION_SEDES (View view){
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        cameraUpdate= CameraUpdateFactory.newLatLngZoom(LOCATION_TOWN,13);
+        map.animateCamera(cameraUpdate);
     }
 }

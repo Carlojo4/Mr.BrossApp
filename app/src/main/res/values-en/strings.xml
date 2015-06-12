@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Mr. Bross</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name= "ubicaciones">Locations</string>
+    <string name= "database">Database</string>
+    <string name= "volver">Back</string>
+    <string name="title_activity_map">Locations</string>
+    <string name="title_activity_data_base">DataBase</string>
+    <string name="Buscar_sede">Search...</string>
+    <string name="sede">Restaurant:</string>
+    <string name="n_lat">New lat:</string>
+    <string name="n_lon">New lon:</string>
+    <string name="lat">latitude:</string>
+    <string name="lon">length:</string>
+    <string name="buscar">SEARCH</string>
+    <string name="current">CURRENT LOCATION</string>
+    <string name="sedes">RESTAURANTS</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="restaurantes">RESTAURANTS</string>
+    <string name="eliminar">DELETE</string>
+    <string name="actualizar">UPDATE</string>
+    <string name="cargar">LOAD</string>
+    <string name="insertar">INSERT</string>
+</resources>

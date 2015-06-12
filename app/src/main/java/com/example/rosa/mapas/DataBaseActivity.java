@@ -45,11 +45,6 @@ public class DataBaseActivity extends ActionBarActivity implements View.OnClickL
         adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to,0);
         lista.setAdapter(adapter);
 
-        Manager.insertar("Envigado", "6.171746", "-75.585076");
-        Manager.insertar("Poblado", "6.209251", "-75.566898");
-        Manager.insertar("Centro", "6.246631", "-75.572448");
-        Manager.insertar("La 33", "6.239640", "-75.580865");
-        Manager.insertar("La 80","6.261381", "-75.597193");
         //Manager.insertar("Alejo","5822128");
         //Manager.insertar("Pablo","2651752");
         //Manager.insertar("Paula","4910413");
@@ -63,27 +58,32 @@ public class DataBaseActivity extends ActionBarActivity implements View.OnClickL
         btneliminar.setOnClickListener(this);
         Button btnactualizar = (Button) findViewById(R.id.btnactualizar);
         btnactualizar.setOnClickListener(this);
+        Button btnset = (Button) findViewById(R.id.btnset);
+        btnset.setOnClickListener(this);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_data_base, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle click
-        // s on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_volver) {
+            Intent i = new Intent(this,MainActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.action_locations) {
+            Intent i = new Intent(this,MapActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -131,6 +131,13 @@ public class DataBaseActivity extends ActionBarActivity implements View.OnClickL
             sede.setText("");
             lat.setText("");
             lon.setText("");
+        }
+        if (v.getId()==R.id.btnset){
+            Manager.insertar("Envigado", "6.171746", "-75.585076");
+            Manager.insertar("Poblado", "6.209251", "-75.566898");
+            Manager.insertar("Centro", "6.246631", "-75.572448");
+            Manager.insertar("La 33", "6.239640", "-75.580865");
+            Manager.insertar("La 80", "6.261381", "-75.597193");
         }
     }
 
